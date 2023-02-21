@@ -10,6 +10,11 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked})=
     const isDesktop = useMediaQuery('(min-width:600px)')
 
     return(
+        //Using the Google Map React Library in React to show all local restuarants in screen area of the map. If you drag anywhere else
+        // the coordinates will change and new places will be displayed. If you then click on a location on the map screen then the 
+        // onChildClick shall prompt and push that location information backup the component tree and will appear on the left. 
+        // An awesome functionality and that took a bit to get the hang of.
+        //BEGIN HERE
         <div className={classes.mapContainer}>
             <GoogleMapReact
                 bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_API_KEY}}
@@ -24,6 +29,7 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked})=
                 }}
                 onChildClick={(child)=> setChildClicked(child)}
             >
+        //END HERE
                 {places?.map((place, index)=>(
                     <div className={classes.markerContainer} lat={place.latitude} lng={place.longitude} key={index}>
                         {
